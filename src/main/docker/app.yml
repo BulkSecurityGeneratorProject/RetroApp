@@ -1,0 +1,14 @@
+version: '2'
+services:
+    retroapp-app:
+        image: retroapp
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://retroapp-postgresql:5432/RetroApp
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    retroapp-postgresql:
+        extends:
+            file: postgresql.yml
+            service: retroapp-postgresql
