@@ -1,4 +1,4 @@
-!https://travis-ci.org/Steampunk1453/RetroApp.svg?branch=master!:https://travis-ci.org/Steampunk1453/RetroApp
+[![Build Status](https://travis-ci.org/Steampunk1453/RetroApp.svg?branch=master)](https://travis-ci.org/Steampunk1453/RetroApp)
 
 # RetroApp
 This application was generated using JHipster 4.7.0, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.7.0](https://jhipster.github.io/documentation-archive/v4.7.0).
