@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * Controller for view and managing Log Level at runtime.
  */
 @RestController
-@RequestMapping("/management")
+@RequestMapping("")
 public class LogsResource {
 
     @GetMapping("/logs")

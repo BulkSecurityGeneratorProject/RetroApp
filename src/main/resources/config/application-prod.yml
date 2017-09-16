@@ -19,10 +19,10 @@ spring:
             enabled: false
         livereload:
             enabled: false
-   datasource:
-        url: jdbc:postgresql://ec2-46-137-97-169.eu-west-1.compute.amazonaws.com:5432/d69er2u23mk7ok?sslmode=require
-        username: lplfzeyaxxcmjk
-        password: 389f50da846cfd4b8eb69022b43d66ae7df9db742985d2f6dbd3669cbdfd63b9
+    datasource:
+        url: jdbc:postgresql://ec2-46-137-97-169.eu-west-1.compute.amazonaws.com:5432/d69b3vber9j0mu?sslmode=require
+        username: febkwgsnunjyvd
+        password: a21f781fecafeb29973097f28885294a8db7c4a1e2f8ee3e3c8291186a24ea8f
         driverClassName: org.postgresql.Driver
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect

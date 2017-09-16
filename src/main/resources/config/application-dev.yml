@@ -33,6 +33,7 @@ spring:
         console:
             enabled: true
             path: /console
+            # URL:jdbc:h2:file:./target/h2db/db/retroapp;DB_CLOSE_DELAY
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedH2Dialect
         database: H2

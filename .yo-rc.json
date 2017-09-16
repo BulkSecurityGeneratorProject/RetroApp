@@ -36,6 +36,6 @@
       "en",
       "fr"
     ],
-    "herokuAppName": "retro-app"
+    "herokuAppName": null
   }
 }
