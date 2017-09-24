@@ -2,24 +2,24 @@
     "retroApp": {
         "subject" : {
             "home": {
-                "title": "Subjects",
-                "createLabel": "Créer un nouveau Subject",
-                "createOrEditLabel": "Créer ou éditer un Subject"
+                "title": "Assujettirs",
+                "createLabel": "Créer un nouveau Assujettir",
+                "createOrEditLabel": "Créer ou éditer un Assujettir"
             },
-            "created": "Un nouveau Subject a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Subject avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Subject avec l'identifiant {{ param }} a été supprimé",
+            "created": "Un nouveau Assujettir a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Assujettir avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Assujettir avec l'identifiant {{ param }} a été supprimé",
             "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Subject {{ id }} ?"
+                "question": "Etes-vous certain de vouloir supprimer le Assujettir {{ id }} ?"
             },
             "detail": {
-                "title": "Subject"
+                "title": "Assujettir"
             },
-            "name": "Name",
-            "area": "Area",
+            "name": "Nom",
+            "area": "Zone",
             "province": "Province",
-            "dateTest": "Date Test",
-            "price": "Price"
+            "dateTest": "Jour de test",
+            "price": "Prix"
         }
     }
 }

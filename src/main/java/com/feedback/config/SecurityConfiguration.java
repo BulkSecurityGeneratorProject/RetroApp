@@ -1,10 +1,9 @@
 package com.feedback.config;
 
-import com.feedback.security.*;
-import com.feedback.security.jwt.*;
-
-import io.github.jhipster.security.*;
-
+import com.feedback.security.AuthoritiesConstants;
+import com.feedback.security.jwt.JWTConfigurer;
+import com.feedback.security.jwt.TokenProvider;
+import io.github.jhipster.security.Http401UnauthorizedEntryPoint;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -104,6 +103,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/account/reset_password/init").permitAll()
             .antMatchers("/api/account/reset_password/finish").permitAll()
             .antMatchers("/api/profile-info").permitAll()
+            .antMatchers("/api/subjects/**").permitAll()
             .antMatchers("/api/**").authenticated()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
