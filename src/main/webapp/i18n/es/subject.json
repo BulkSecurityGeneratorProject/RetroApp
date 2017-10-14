@@ -2,24 +2,24 @@
     "retroApp": {
         "subject" : {
             "home": {
-                "title": "Temas",
-                "createLabel": "Crear nuevo Tema",
-                "createOrEditLabel": "Crear o editar Tema"
+                "title": "Subjects",
+                "createLabel": "Crear nuevo Subject",
+                "createOrEditLabel": "Crear o editar Subject"
             },
-            "created": "Un nuevo Tema ha sido creado con el identificador {{ param }}",
-            "updated": "Un Tema ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Tema ha sido eliminado con el identificador {{ param }}",
+            "created": "Un nuevo Subject ha sido creado con el identificador {{ param }}",
+            "updated": "Un Subject ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Subject ha sido eliminado con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Tema {{ id }}?"
+                "question": "¿Seguro que quiere eliminar Subject {{ id }}?"
             },
             "detail": {
-                "title": "Tema"
+                "title": "Subject"
             },
-            "name": "Nombre",
-            "area": "Área",
-            "province": "Provincia",
-            "dateTest": "Día prueba",
-            "price": "Precio"
+            "name": "Name",
+            "area": "Area",
+            "province": "Province",
+            "dateTest": "Date Test",
+            "price": "Price"
         }
     }
 }
