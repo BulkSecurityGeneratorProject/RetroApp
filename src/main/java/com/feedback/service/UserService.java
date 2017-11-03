@@ -1,15 +1,15 @@
 package com.feedback.service;
 
+import com.feedback.config.Constants;
 import com.feedback.domain.Authority;
 import com.feedback.domain.User;
 import com.feedback.repository.AuthorityRepository;
-import com.feedback.config.Constants;
 import com.feedback.repository.UserRepository;
 import com.feedback.security.AuthoritiesConstants;
 import com.feedback.security.SecurityUtils;
-import com.feedback.service.util.RandomUtil;
 import com.feedback.service.dto.UserDTO;
-
+import com.feedback.service.mapper.UserMapper;
+import com.feedback.service.util.RandomUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -21,7 +21,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -39,10 +42,14 @@ public class UserService {
 
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
+    private final UserMapper userMapper;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository,
+                       UserMapper userMapper) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
+        this.userMapper = userMapper;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -217,7 +224,10 @@ public class UserService {
     public User getUserWithAuthorities() {
         return userRepository.findOneWithAuthoritiesByLogin(SecurityUtils.getCurrentUserLogin()).orElse(null);
     }
-
+    @Transactional(readOnly = true)
+    public UserDTO findOneByLogin(String login) {
+        return userMapper.userToUserDTO(userRepository.findOneAuthoritiesByLogin(login));
+    }
 
     /**
      * Not activated users should be automatically deleted after 3 days.

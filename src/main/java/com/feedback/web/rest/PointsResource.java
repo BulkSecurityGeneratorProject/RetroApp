@@ -1,7 +1,12 @@
 package com.feedback.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.feedback.domain.Points;
+import com.feedback.repository.PointsRepository;
+import com.feedback.security.AuthoritiesConstants;
+import com.feedback.security.SecurityUtils;
 import com.feedback.service.PointsService;
+import com.feedback.service.UserService;
 import com.feedback.service.dto.PointsDTO;
 import com.feedback.web.rest.util.HeaderUtil;
 import com.feedback.web.rest.util.PaginationUtil;
@@ -35,8 +40,14 @@ public class PointsResource {
 
     private final PointsService pointsService;
 
-    public PointsResource(PointsService pointsService) {
+    private final UserService userService;
+
+    private final PointsRepository pointsRepository;
+
+    public PointsResource(PointsService pointsService, UserService userService, PointsRepository pointsRepository) {
         this.pointsService = pointsService;
+        this.userService = userService;
+        this.pointsRepository = pointsRepository;
     }
 
     /**
@@ -51,7 +62,12 @@ public class PointsResource {
     public ResponseEntity<PointsDTO> createPoints(@Valid @RequestBody PointsDTO pointsDTO) throws URISyntaxException {
         log.debug("REST request to save Points : {}", pointsDTO);
         if (pointsDTO.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new points cannot already have an ID")).body(null);
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists",
+                "A new points cannot already have an ID")).body(null);
+        } if (!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+                log.debug("No user passed in, using current user: {}",
+                    SecurityUtils.getCurrentUserLogin());
+            pointsDTO.setUserId(userService.findOneByLogin(SecurityUtils.getCurrentUserLogin()).getId());
         }
         PointsDTO result = pointsService.save(pointsDTO);
         return ResponseEntity.created(new URI("/api/points/" + result.getId()))
@@ -91,9 +107,16 @@ public class PointsResource {
     @Timed
     public ResponseEntity<List<PointsDTO>> getAllPoints(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Points");
-        Page<PointsDTO> page = pointsService.findAll(pageable);
+        Page<Points> page;
+        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+            page = pointsRepository.findAllByOrderByDateDesc(pageable);
+
+        } else {
+            page = pointsRepository.findByUserIsCurrentUser(pageable);
+
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/points");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        return new ResponseEntity<>(pointsService.getPointsList(page.getContent()), headers, HttpStatus.OK);
     }
 
     /**

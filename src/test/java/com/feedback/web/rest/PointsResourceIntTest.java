@@ -4,6 +4,7 @@ import com.feedback.RetroApp;
 import com.feedback.domain.Points;
 import com.feedback.repository.PointsRepository;
 import com.feedback.service.PointsService;
+import com.feedback.service.UserService;
 import com.feedback.service.dto.PointsDTO;
 import com.feedback.service.mapper.PointsMapper;
 import com.feedback.web.rest.errors.ExceptionTranslator;
@@ -20,6 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.WebApplicationContext;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
@@ -76,6 +78,12 @@ public class PointsResourceIntTest {
     @Autowired
     private EntityManager em;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private WebApplicationContext context;
+
     private MockMvc restPointsMockMvc;
 
     private Points points;
@@ -83,7 +91,7 @@ public class PointsResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PointsResource pointsResource = new PointsResource(pointsService);
+        final PointsResource pointsResource = new PointsResource(pointsService, userService, pointsRepository);
         this.restPointsMockMvc = MockMvcBuilders.standaloneSetup(pointsResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

@@ -1,8 +1,11 @@
 package com.feedback.service;
 
+import com.feedback.domain.Points;
 import com.feedback.service.dto.PointsDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 /**
  * Service Interface for managing Points.
@@ -39,4 +42,7 @@ public interface PointsService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    List<PointsDTO> getPointsList(List<Points> content);
+
 }

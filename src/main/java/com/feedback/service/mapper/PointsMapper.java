@@ -25,4 +25,5 @@ public interface PointsMapper extends EntityMapper <PointsDTO, Points> {
         points.setId(id);
         return points;
     }
+
 }

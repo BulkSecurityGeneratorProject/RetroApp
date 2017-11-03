@@ -5,7 +5,10 @@
                 "title": "Points",
                 "createLabel": "Create a new Points",
                 "createOrEditLabel": "Create or edit a Points",
-                "search": "Search"
+                "search": "Search",
+                "exercise":"Exercise",
+                "meals": "Meals",
+                "alcohol": "Alcohol"
             },
             "created": "A new Points is created with identifier {{ param }}",
             "updated": "A Points is updated with identifier {{ param }}",

@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 /**
  * Service Implementation for managing Points.
@@ -82,4 +84,16 @@ public class PointsServiceImpl implements PointsService{
         log.debug("Request to delete Points : {}", id);
         pointsRepository.delete(id);
     }
+
+    @Override
+    public List<PointsDTO> getPointsList(List<Points> content) {
+        return pointsMapper.toDto(content);
+    }
+
+//    @Override
+//    public Page<PointsDTO> findAllByOrderByDateDesc(Pageable pageable) {
+//        return pointsMapper.toDto(pointsRepository.findByUserIsCurrentUser(pageable));
+//            pointsRepository.findByUserIsCurrentUser(pageable);
+//    }
+
 }

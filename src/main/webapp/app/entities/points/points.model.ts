@@ -8,7 +8,7 @@ export class Points implements BaseEntity {
         public meals?: number,
         public alcohol?: number,
         public notes?: string,
-        public userId?: number,
+        public userLogin?: string,
     ) {
     }
 }
